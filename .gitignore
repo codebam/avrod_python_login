@@ -2,6 +2,7 @@
 .vscode/
 
 __pycache__/
+.mypy_cache/
 
 source/content/media/
 source/content/static/
