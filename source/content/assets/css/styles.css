@@ -1,2 +1,5 @@
 /* Hi there */
-
+html, body {
+    color: white;
+    background-color: #343a40;
+}
