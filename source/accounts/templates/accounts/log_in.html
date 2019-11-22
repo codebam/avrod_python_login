@@ -2,6 +2,7 @@
 
 {% load bootstrap4 %}
 {% load i18n %}
+{% load static %}
 
 {% block content %}
 
@@ -13,6 +14,10 @@
         {% bootstrap_form form %}
 
         <button class="btn btn-primary">{% trans 'Log in' %}</button>
+
+        <div class="oauth-logins">
+            <a href="{% url 'social:begin' 'steam' %}?next={{ request.path }}"><img src="{% static '/img/steambutton.png' %}" alt="Steam login button."></a>
+        </div>
 
     </form>
 
