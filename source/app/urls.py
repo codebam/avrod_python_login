@@ -6,14 +6,13 @@ from django.conf.urls.static import static
 from main.views import IndexPageView, ChangeLanguageView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-
-    path('', IndexPageView.as_view(), name='index'),
-
-    path('i18n/', include('django.conf.urls.i18n')),
-    path('language/', ChangeLanguageView.as_view(), name='change_language'),
-
-    path('accounts/', include('accounts.urls')),
+    path("admin/", admin.site.urls),
+    path("", IndexPageView.as_view(), name="index"),
+    path("", include("social_django.urls", namespace="social")),
+    path("i18n/", include("django.conf.urls.i18n")),
+    path("language/", ChangeLanguageView.as_view(), name="change_language"),
+    path("accounts/", include("accounts.urls")),
+    path("authentication/", include("authentication.urls", namespace="authentication")),
 ]
 
 if settings.DEBUG:
