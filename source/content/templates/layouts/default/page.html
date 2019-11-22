@@ -35,17 +35,18 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
             {% if request.user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'accounts:change_password' %}">{% trans 'Change password' %}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'accounts:change_profile' %}">{% trans 'Change profile' %}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'accounts:change_email' %}">{% trans 'Change email' %}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'accounts:log_out' %}">{% trans 'Log out' %}</a>
+                <li class="nav-item dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Account Settings
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'authentication:steam' %}">Steam log in</a>
+                        <a class="dropdown-item" href="{% url 'accounts:change_password' %}">Change Password</a>
+                        <a class="dropdown-item" href="{% url 'accounts:change_profile' %}">Change Profile</a>
+                        <a class="dropdown-item" href="{% url 'accounts:change_email' %}">Change Email</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'accounts:log_out' %}">Log Out</a>
+                    </div>
                 </li>
             {% else %}
                 <li class="nav-item">
