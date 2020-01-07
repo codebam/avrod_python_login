@@ -29,6 +29,11 @@ INSTALLED_APPS = [
     # Application apps
     "main",
     "accounts",
+    # allauth apps
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.steam',
 ]
 
 MIDDLEWARE = [
@@ -47,7 +52,7 @@ ROOT_URLCONF = "app.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(CONTENT_DIR, "templates")],
+        "DIRS": [],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -132,3 +137,16 @@ MEDIA_URL = "/media/"
 STATICFILES_DIRS = [os.path.join(CONTENT_DIR, "assets")]
 
 LOCALE_PATHS = [os.path.join(CONTENT_DIR, "locale")]
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SOCIALACCOUNT_PROVIDERS = {
+    'steam': {
+        'APP': {
+            'key': '09CE86764788F957576A854A49F0C450'
+        }
+    }
+}
