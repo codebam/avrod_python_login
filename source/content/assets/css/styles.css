@@ -3,3 +3,7 @@ html, body {
     color: white;
     background-color: #343a40;
 }
+
+ .oauth-logins {
+    margin-top: 10px;
+ }
