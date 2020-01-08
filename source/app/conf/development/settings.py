@@ -146,7 +146,7 @@ AUTHENTICATION_BACKENDS = (
 SOCIALACCOUNT_PROVIDERS = {
     'steam': {
         'APP': {
-            'key': '09CE86764788F957576A854A49F0C450'
+            'client_id': '09CE86764788F957576A854A49F0C450'
         }
     }
 }
