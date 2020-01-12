@@ -142,11 +142,3 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 )
-
-SOCIALACCOUNT_PROVIDERS = {
-    'steam': {
-        'APP': {
-            'client_id': '09CE86764788F957576A854A49F0C450'
-        }
-    }
-}
