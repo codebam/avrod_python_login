@@ -6,11 +6,13 @@
 
     {% if request.user.is_authenticated %}
 
-        {% trans 'Your username is' %} <b>{{ request.user.username }}</b>.
+        {% trans 'Welcome' %} <b>{{ request.user.username }}</b>.
 
     {% else %}
 
-        {% trans 'You are a guest.' %}
+        <p>
+            {% trans 'Please' %} <a href="{% url 'accounts:log_in' %}">sign in</a> or <a href="{% url 'accounts:sign_up' %}">register</a> {% trans 'to continue.' %}
+        </p>
 
     {% endif %}
 
