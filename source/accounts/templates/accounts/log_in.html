@@ -5,16 +5,21 @@
 {% load static %}
 {% load socialaccount %}
 
+{% block head_block %}
+    <title>AVROD - Login</title>
+{% endblock %}
+
 {% block content %}
 
-    <h4>{% trans 'Log in' %}</h4>
+    <h3>{% trans 'Login' %}</h3>
 
-    <form method="post">
+    <form id="login-form" method="post">
 
         {% csrf_token %}
         {% bootstrap_form form %}
 
-        <button class="btn btn-primary">{% trans 'Log in' %}</button>
+        <button class="btn btn-outline-light">{% trans 'Log in' %}</button>
+        <a href="{% url 'accounts:sign_up' %}">{% trans 'Don\'t have an account? Click here to create one.' %}</a>
         <div class="oauth-logins">
             <a href="{% provider_login_url 'steam' %}"><img src="{% static '/img/steam-button.png' %}" alt="Sign in through Steam."></a>
         </div>
@@ -23,7 +28,7 @@
 
     <hr>
 
-    <ul>
+    <ul id="login-links">
         <li>
             <a href="{% url 'accounts:restore_password' %}">{% trans 'Forgot your password?' %}</a>
         </li>

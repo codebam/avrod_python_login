@@ -21,3 +21,22 @@ html, body {
  #change-language-btn a:hover {
      color: black;
  }
+
+ /* Login page */
+
+#login-form>a {
+    display: block;
+    font-size: small;
+    color: white;
+    margin-top: 1rem;
+}
+
+#login-links {
+    list-style: none;
+}
+
+ #login-links a {
+    color: #AAA;
+    font-style: italic;
+    font-size: small;
+ }
