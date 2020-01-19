@@ -3,26 +3,28 @@ html, body {
     background-color: #1D2326;
 }
 
- .oauth-logins {
+/* Page template */
+
+#header {
+    height: 65px;
+    background-color: rgba(32,33,36,0.5);
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+}
+
+#change-language-btn a {
+    color: white;
+    padding: 0.5rem 1rem;
+}
+
+#change-language-btn a:hover {
+    color: black;
+}
+
+/* Login page */
+
+.oauth-logins {
     margin-top: 10px;
  }
-
- #header {
-     height: 65px;
-     background-color: rgba(32,33,36,0.5);
-     border-bottom: 1px solid rgba(255,255,255,0.3);
- }
-
- #change-language-btn a {
-     color: white;
-     padding: 0.5rem 1rem;
- }
-
- #change-language-btn a:hover {
-     color: black;
- }
-
- /* Login page */
 
 #login-form>a {
     display: block;
@@ -35,8 +37,8 @@ html, body {
     list-style: none;
 }
 
- #login-links a {
-    color: #AAA;
-    font-style: italic;
-    font-size: small;
- }
+#login-links a {
+   color: #AAA;
+   font-style: italic;
+   font-size: small;
+}

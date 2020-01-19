@@ -18,7 +18,7 @@
         {% csrf_token %}
         {% bootstrap_form form %}
 
-        <button class="btn btn-outline-light">{% trans 'Log in' %}</button>
+        <button class="btn btn-outline-primary">{% trans 'Log in' %}</button>
         <a href="{% url 'accounts:sign_up' %}">{% trans 'Don\'t have an account? Click here to create one.' %}</a>
         <div class="oauth-logins">
             <a href="{% provider_login_url 'steam' %}"><img src="{% static '/img/steam-button.png' %}" alt="Sign in through Steam."></a>
