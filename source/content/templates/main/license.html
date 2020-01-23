@@ -1,0 +1,28 @@
+{% extends 'layouts/default/page.html' %}
+
+{% load i18n %}
+
+{% block content %}
+
+    <h3>Licensing</h3>
+    <p>Gain full access to the AVROD software and explore all the available locations.</p>
+    <div class="license-option">
+        <h4>Monthly</h4>
+        <div class="license-price">
+            <div class="license-price-text">$X.XX</div>
+            <div>CAD</div>
+        </div>
+        <div class="text-muted">Billed Monthly</div>
+        <button class="btn btn-outline-primary license-btn">{% trans 'Select' %}</button>
+    </div>
+    <div class="license-option">
+        <h4>Annually</h4>
+        <div class="license-price">
+            <div class="license-price-text">$X.XX/mo</div>
+            <div>CAD</div>
+        </div>
+        <div class="text-muted">Billed $XX.XX Annually</div>
+        <button class="btn btn-outline-primary license-btn">{% trans 'Select' %}</button>
+    </div>
+
+{% endblock %}
