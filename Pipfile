@@ -9,7 +9,6 @@ Django = ">=2.2.9"
 psycopg2-binary = "*"
 django-allauth = "*"
 stripe = "*"
-rsa = "*"
 
 [dev-packages]
 neovim = "*"
