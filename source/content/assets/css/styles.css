@@ -1,6 +1,13 @@
-html, body {
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
     color: white;
     background-color: #1D2326;
+    padding-top: 0;
+    margin-bottom: 50px;
 }
 
 /* Page template */
@@ -18,6 +25,24 @@ html, body {
 
 #change-language-btn a:hover {
     color: black;
+}
+
+footer {
+    height: 40px;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    background:#14191b;
+    font-size:small;
+    text-transform:capitalize;
+    color:#777;
+    text-align:center;
+    width: 100%;
+}
+
+footer p {
+    margin: 0;
+    padding: 10px;
 }
 
 /* Login page */
@@ -41,4 +66,29 @@ html, body {
    color: #AAA;
    font-style: italic;
    font-size: small;
+}
+
+/* License Page */
+
+.license-option {
+    border: 1px solid white;
+    border-radius: 10px;
+    width: 48%;
+    float: left;
+    margin: 5px;
+    padding: 10px;
+    text-align: center;
+}
+
+.license-price {
+    margin: 15px 0;
+}
+
+.license-price-text {
+    font-size: 2.5rem;
+}
+
+.license-btn {
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
