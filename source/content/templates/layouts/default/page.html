@@ -41,6 +41,7 @@
                         Account Settings
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'payment:licensing' %}">Licensing</a>
                         <a class="dropdown-item" href="{% url 'accounts:change_password' %}">Change Password</a>
                         <a class="dropdown-item" href="{% url 'accounts:change_profile' %}">Change Profile</a>
                         <a class="dropdown-item" href="{% url 'accounts:change_email' %}">Change Email</a>
@@ -72,13 +73,10 @@
 </nav>
 
 <div class="container-fluid mt-3 col-6">
-
     {% bootstrap_messages %}
-
     {% block content %}
         No content.
     {% endblock %}
-
 </div>
 
 <footer>
