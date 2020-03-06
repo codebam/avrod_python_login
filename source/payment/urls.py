@@ -1,9 +1,11 @@
 from django.urls import path
-from .views import CreateCustomerView
+from .views import LicenseView, PaymentSuccessView
 
 from . import views
 
+app_name = 'payment'
+
 urlpatterns = [
-    path('', views.HomePageView.as_view(), name='home'),
-    path('checkout/', CreateCustomerView.as_view(), name='checkout'),
+    path('', LicenseView.as_view(), name='licensing'),
+    path('success/', PaymentSuccessView.as_view(), name='checkout'),
 ]

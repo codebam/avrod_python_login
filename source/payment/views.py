@@ -3,47 +3,54 @@ import json
 from django.conf import settings
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
-from django.views.generic.edit import FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import CreateCustomerForm
+from .models import Customer, Subscription, License
 
-class HomePageView(TemplateView):
-    template_name = 'checkout.html'
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['key'] = settings.STRIPE_PUBLISHABLE_KEY
+class LicenseView(LoginRequiredMixin, TemplateView):
+    template_name = 'license.html'
 
-        return context
-
-class CreateCustomerView(LoginRequiredMixin, FormView):
-    template_name = 'create_customer.html'
-    form_class = CreateCustomerForm
-
-    def form_valid(self, form):
-        customer = self.create_customer(self.request)
-        create_customer_in_database(self, form, customer)
-
-    
-    def create_customer_in_database(self, form, customer):
-        request = self.request
+    def get(self, request):
         user = self.request.user
-        result = json.loads(request.body)
-        customer = form.save(commit=False)
-        customer.customer_id = result.id
-        customer.user_id = user
-        customer.save()
+        print(user)
 
-    def create_customer(request):
-        stripe.api_key = settings.STRIPE_SECRET_KEY
+        customer = Customer.objects.filter(user_id=user)
+        print(customer)
 
-        if request.method == 'POST':
-            result = json.loads(request.body)
+        if customer.exists():
+            print("customer exists")
+            session = stripe.checkout.Session.create(
+                customer = customer,
+                payment_method_types=['card'],
+                subscription_data={
+                    'items': [{
+                        'plan': 'plan_GfW2im5hu5EkF1',
+                    }],
+                },
+                success_url='http://127.0.0.1:8000/licensing/success?session_id={CHECKOUT_SESSION_ID}',
+                cancel_url='http://127.0.0.1:8000/licensing/',
+            )
+        else:
+            print("customer does not exist")
+            session = stripe.checkout.Session.create(
+                payment_method_types=['card'],
+                subscription_data={
+                    'items': [{
+                        'plan': 'plan_GfW2im5hu5EkF1',
+                    }],
+                },
+                success_url='http://127.0.0.1:8000/licensing/success?session_id={CHECKOUT_SESSION_ID}',
+                cancel_url='http://127.0.0.1:8000/licensing/',
+            )
 
-            return stripe.Customer.create(
-                payment_method=result.payment_method,
-                email=result.email,
-                invoice_settings={
-                        'default_payment_method': result.payment_method,
-                    },
-                )
+        context = {
+            'session_id': session.id
+        }
+
+        return render(request, self.template_name, context)
+
+
+class PaymentSuccessView(LoginRequiredMixin, TemplateView):
+    template_name = 'success.html'
+        
