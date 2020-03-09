@@ -4,6 +4,8 @@ from django.conf import settings
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 from .models import Customer, Subscription, License
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -53,4 +55,49 @@ class LicenseView(LoginRequiredMixin, TemplateView):
 
 class PaymentSuccessView(LoginRequiredMixin, TemplateView):
     template_name = 'success.html'
+
+    def get(self, request):
+        print(request.session)
+        print(request.session.get('stripe_customer'))
+
+        return render(request, self.template_name)
+
         
+
+endpoint_secret = ''
+
+@csrf_exempt
+def webhook(request):
+    payload = request.body
+    sig_header = request.META['HTTP_STRIPE_SIGNATURE']
+    event = None
+
+    try:
+        event = stripe.Webhook.construct_event(
+        payload, sig_header, endpoint_secret
+        )
+    except ValueError as e:
+        # Invalid payload
+        return HttpResponse(status=400)
+    except stripe.error.SignatureVerificationError as e:
+        # Invalid signature
+        return HttpResponse(status=400)
+
+    # Handle the checkout.session.completed event
+    if event['type'] == 'checkout.session.completed':
+        session = event['data']['object']
+        print("checkout.session.completed")
+
+    if event['type'] == 'customer.created':
+        stripe_customer = event['data']['object']
+        print("customer.created")
+
+    if event['type'] == 'customer.subscription.created':
+        stripe_subscription = event['data']['object']
+        print('customer.subscription.created')
+
+    if event['type'] == 'charge.succeeded':
+        charge = event['data']['object']
+        print('charge.succeeded')
+
+    return HttpResponse(status=200)

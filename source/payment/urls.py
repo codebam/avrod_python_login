@@ -8,4 +8,5 @@ app_name = 'payment'
 urlpatterns = [
     path('', LicenseView.as_view(), name='licensing'),
     path('success/', PaymentSuccessView.as_view(), name='checkout'),
+    path('webhook/', views.webhook, name='webhook'),
 ]
