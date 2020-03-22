@@ -14,11 +14,10 @@ class License(models.Model):
 class Customer(models.Model):
     customer_id = models.CharField(max_length=18, unique=True, primary_key=True)
     user_id = models.OneToOneField(User, on_delete=models.CASCADE)
-    cardholder = models.CharField(max_length=100)
 
     @classmethod
-    def create(cls, customer_id, user_id, cardholder):
-        customer = cls(customer_id=customer_id, user_id=user_id, cardholder=cardholder)
+    def create(cls, customer_id, user_id):
+        customer = cls(customer_id=customer_id, user_id=user_id)
         return customer
 
 
