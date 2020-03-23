@@ -9,8 +9,6 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from .models import Customer, Subscription, License
 from django.contrib.auth.models import User
-from .keygen import generate
-from django.utils.crypto import get_random_string
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 global stripe_customer
@@ -98,19 +96,6 @@ def webhook(request):
                 user
             )
             customer.save()
-        else:
-            customer = Customer.objects.get(user_id=user)
-        
-        key = generate(get_random_string(32))
-        license_key = License.create(key)
-        license_key.save()
-
-        subscription = Subscription.create(
-            session.subscription,
-            customer,
-            license_key
-        )
-        subscription.save()
         
 
     if event['type'] == 'customer.created':

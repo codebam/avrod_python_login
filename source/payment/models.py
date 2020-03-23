@@ -1,7 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.utils import timezone
-import datetime
 
 class Session(models.Model):
     session_key = models.CharField(max_length=64)
@@ -11,11 +9,6 @@ class Session(models.Model):
 class License(models.Model):
     license_key = models.CharField(max_length=32, primary_key=True, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
-
-    @classmethod
-    def create(cls, license_key):
-        license = cls(license_key=license_key)
-        return license
 
 
 class Customer(models.Model):
@@ -31,10 +24,10 @@ class Customer(models.Model):
 class Subscription(models.Model):
     sub_id = models.CharField(max_length=18, unique=True, primary_key=True)
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True)
-    license_key = models.ForeignKey(License, on_delete=models.CASCADE, null=True)
+    license_key = models.CharField(max_length=20) # license_key = models.ForeignKey(License, on_delete=models.CASCADE, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     @classmethod
-    def create(cls, sub_id, customer_id, license_key):
-        subscription = cls(sub_id=sub_id, customer_id=customer_id, license_key=license_key)
+    def create(cls, sub_id, customer_id, license_key, created_at):
+        subscription = cls(sub_id=sub_id, customer_id=customer_id, license_key=license_key, created_at=created_at)
         return subscription
