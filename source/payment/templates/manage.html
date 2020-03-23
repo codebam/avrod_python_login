@@ -1,0 +1,21 @@
+{% extends 'layouts/default/page.html' %}
+
+{% load i18n %}
+{% load static %}
+
+{% block head_block %}
+<title>License Management</title>
+<script src="https://js.stripe.com/v3/"></script>
+{% endblock head_block %}
+
+{% block content %}
+    <h3>Manage your license</h3>
+    <button class='btn btn-outline-primary'>Update Payment Information</button>
+{% endblock content %}
+
+{% block scripts %}
+<script type="text/javascript">
+    var session_id = '{{ session_id }}';
+</script>
+<script src="{% static 'js/stripe-checkout.js' %}"></script>
+{% endblock scripts %}
