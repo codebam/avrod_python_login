@@ -32,9 +32,10 @@ class Subscription(models.Model):
     sub_id = models.CharField(max_length=18, unique=True, primary_key=True)
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True)
     license_key = models.ForeignKey(License, on_delete=models.CASCADE, null=True)
+    renewal_date = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True)
 
     @classmethod
-    def create(cls, sub_id, customer_id, license_key):
-        subscription = cls(sub_id=sub_id, customer_id=customer_id, license_key=license_key)
+    def create(cls, sub_id, customer_id, license_key, renewal_date):
+        subscription = cls(sub_id=sub_id, customer_id=customer_id, license_key=license_key, renewal_date=renewal_date)
         return subscription
