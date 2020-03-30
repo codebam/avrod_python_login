@@ -10,8 +10,10 @@
 
 {% block content %}
     <h3>Manage your license</h3>
-    <button class='btn btn-outline-primary'>Update Payment Information</button>
-    
+    <p>You are currently have a monthly license</p>
+    <p>Your next payment date is {{ subscription.renewal_date }}</p>
+    <button id='checkout-btn' class='btn btn-outline-primary' style='display:block; margin-bottom:10px;'>Update Payment Information</button>
+    <button class='btn btn-outline-danger' style='display:block;'>Cancel Subscription</button>
 {% endblock content %}
 
 {% block scripts %}

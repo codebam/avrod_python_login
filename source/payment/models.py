@@ -32,7 +32,7 @@ class Subscription(models.Model):
     sub_id = models.CharField(max_length=18, unique=True, primary_key=True)
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True)
     license_key = models.ForeignKey(License, on_delete=models.CASCADE, null=True)
-    renewal_date = models.DateTimeField()
+    renewal_date = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)
 
     @classmethod

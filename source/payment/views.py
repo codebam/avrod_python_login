@@ -113,9 +113,7 @@ def webhook(request):
         license_key = License.create(key)
         license_key.save()
         stripe_sub = stripe.Subscription.retrieve(session.subscription)
-        sub_end_date = datetime.datetime.utcfromtimestamp(float(stripe_sub.current_period_end))
-        print(stripe_sub.id)
-        print(sub_end_date)
+        sub_end_date = datetime.datetime.fromtimestamp(float(stripe_sub.current_period_end)).date()
 
         subscription = Subscription.create(
             stripe_sub.id,
@@ -138,5 +136,10 @@ class PaymentSuccessView(LoginRequiredMixin, TemplateView):
 class ManageLicenseView(LoginRequiredMixin, TemplateView):
     template_name = 'manage.html'
 
-    def get(self, request):
-        return render(request, self.template_name)
+    def get(self, request, *args, **kwargs):
+        sub_id = kwargs.get('sub_id')
+        subscription = Subscription.objects.get(sub_id=sub_id)
+        context = {
+            'subscription': subscription
+        }
+        return render(request, self.template_name, context)
