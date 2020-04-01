@@ -1,7 +1,5 @@
-console.log("script loaded.")
-
 var stripe = Stripe('pk_test_FAFu3glBDqdKrdvJNOiF94iZ00LEThelHv');
-var button = document.getElementById('monthly-btn');
+var button = document.getElementById('checkout-btn');
 
 button.addEventListener('click', function() {
   stripe.redirectToCheckout({
