@@ -59,3 +59,12 @@
         </div>
     </div>
 {% endblock content %}
+
+{% block scripts %}
+{% if not last_period %}
+<script type="text/javascript">
+    var session_id = '{{ session_id }}';
+</script>
+<script src="{% static 'js/stripe-checkout.js' %}"></script>
+{% endif %}
+{% endblock scripts %}

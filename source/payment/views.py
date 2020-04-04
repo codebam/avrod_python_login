@@ -123,11 +123,23 @@ class CancelSubscriptionView(LoginRequiredMixin, TemplateView):
             cancel_at_period_end=True
         )
 
-        return render(request, self.template_name)
+        context = {
+            'sub_id': sub_id,
+        }
+
+        return render(request, self.template_name, context)
 
 
 class UpdateSubscriptionView(LoginRequiredMixin, TemplateView):
     template_name = 'update-success.html'
+
+    def get(self, request, *args, **kwargs):
+        sub_id = kwargs.get('sub_id')
+        context = {
+            'sub_id': sub_id,
+        }
+
+        return render(request, self.template_name, context)
 
 
 class ReactivateSubscriptionView(LoginRequiredMixin, TemplateView):
@@ -142,7 +154,11 @@ class ReactivateSubscriptionView(LoginRequiredMixin, TemplateView):
             cancel_at_period_end=False,
         )
 
-        return render(request, self.template_name)
+        context = {
+            'sub_id': sub_id,
+        }
+
+        return render(request, self.template_name, context)
 
 
 # Webhook Receiver
