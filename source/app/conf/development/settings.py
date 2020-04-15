@@ -11,6 +11,11 @@ CONTENT_DIR = os.path.join(BASE_DIR, "content")
 
 SECRET_KEY = "NhfTvayqggTBPswCXXhWaN69HuglgZIkM"
 
+STRIPE_SECRET_KEY = 'sk_test_oHZ6TtwogfqBddcaf8sqG9Np005eQ5e5OA'
+STRIPE_PUBLISHABLE_KEY = 'pk_test_FAFu3glBDqdKrdvJNOiF94iZ00LEThelHv'
+
+LICENSE_SECRET='license key secret, change me'  # Used in source/payment/keygen.py
+
 DEBUG = True
 ALLOWED_HOSTS = []
 
@@ -144,5 +149,3 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-STRIPE_SECRET_KEY = 'sk_test_oHZ6TtwogfqBddcaf8sqG9Np005eQ5e5OA'
-STRIPE_PUBLISHABLE_KEY = 'pk_test_FAFu3glBDqdKrdvJNOiF94iZ00LEThelHv'

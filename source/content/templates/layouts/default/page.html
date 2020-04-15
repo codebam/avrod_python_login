@@ -41,6 +41,7 @@
                         Account Settings
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'payment:licensing' %}">Licensing</a>
                         <a class="dropdown-item" href="{% url 'accounts:change_password' %}">Change Password</a>
                         <a class="dropdown-item" href="{% url 'accounts:change_profile' %}">Change Profile</a>
                         <a class="dropdown-item" href="{% url 'accounts:change_email' %}">Change Email</a>
@@ -72,13 +73,10 @@
 </nav>
 
 <div class="container-fluid mt-3 col-6">
-
     {% bootstrap_messages %}
-
     {% block content %}
         No content.
     {% endblock %}
-
 </div>
 
 <footer>
@@ -90,6 +88,8 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 <script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>
+{% block scripts %}
+{% endblock %}
 
 </body>
 </html>
